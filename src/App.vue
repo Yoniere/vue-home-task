@@ -1,28 +1,47 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <v-app class="app">
+    <headerVue></headerVue>
+
+    <v-main class="indigo lighten-5">
+      <energyTable v-bind:energyUse="this.energyUse"> </energyTable>
+    </v-main>
+
+    <footerVue></footerVue>
+  </v-app>
 </template>
 
+
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import energyTable from "./components/energyTable";
+import "./assets/style/app.scss";
+import headerVue from "./components/header.vue";
+import footerVue from "./components/footer.vue";
 
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
-</script>
+  name: "App",
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+  components: {
+    energyTable,
+    headerVue,
+    footerVue,
+  },
+
+  data: () => ({
+    energyUse: null,
+  }),
+  async created() {
+    await this.$store.dispatch({ type: "loadEnergyUse" });
+    this.setEnergyUse();
+    // this.energyUse = this.$store.getters.energyUse
+    // console.log(this.energyUse)
+  },
+  methods: {
+    setEnergyUse() {
+      let energyUse = this.$store.getters.energyUse;
+      energyUse = energyUse.records.map((energy) => energy.fields);
+      this.energyUse = energyUse;
+      // console.log(this.energyUse);
+    },
+  },
+};
+</script>
