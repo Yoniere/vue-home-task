@@ -13,14 +13,13 @@ export default new Vuex.Store({
   },
   mutations: {
     setEnergyUse(state, { energyUse }) {
-      // console.log(EnergyUse)
-      state.energyUse = energyUse
+      const revisedEnergyUse = energyUse.records.map((energy) => energy.fields);
+      state.energyUse = revisedEnergyUse
     }
   },
   actions: {
     async loadEnergyUse({ commit, state }) {
       const energyUse = await apiService.getEnergyUse()
-      // console.log(energyUse)
       try {
         commit({ type: 'setEnergyUse', energyUse })
       } catch (err) {

@@ -38,7 +38,6 @@ export default {
     search: "",
   }),
   async created() {
-    // console.log(this.energyUse)
   },
   methods: {
     setFilter(search) {

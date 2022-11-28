@@ -3,11 +3,10 @@
     <v-text-field
       v-model="search"
       @change="setFilter()"
-      class=" filter pl-0 pr-0 mt-4 rounded-1"
+      class="filter pl-0 pr-0 mt-4 rounded-1"
       dense
       filled
       label="Search"
-      
     >
     </v-text-field>
   </section>
