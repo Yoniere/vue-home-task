@@ -6,7 +6,7 @@ export const apiService = {
 
 async function getEnergyUse() {
     try {
-        const res = await axios('https://datasource.kapsarc.org/api/records/1.0/search/?dataset=emissions_agriculture_energy_e_all_data_norm')
+        const res = await axios(process.env.VUE_APP_ENERGY_API)
         return res.data
     } catch (err) {
         console.log(err)

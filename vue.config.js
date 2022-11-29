@@ -10,3 +10,4 @@ module.exports = {
   ? '/vue-home-task/'
   : '/'
 }
+
